@@ -9,13 +9,13 @@ import time
 airbnbDomain = "https://www.airbnb.com.br"
 
 #request para primeira página
-page = requests.get("https://www.airbnb.com.br/s/Guaratuba-~-PR/homes?flexible_trip_lengths%5B%5D=one_week&query=Guaratuba%20-%20PR&place_id=ChIJHS-OyKP625QRcyrMGqegO1I&refinement_paths%5B%5D=%2Fhomes&tab_id=home_tab&date_picker_type=calendar&source=structured_search_input_header&search_type=user_map_move&price_filter_input_type=2&price_filter_num_nights=5&channel=EXPLORE&ne_lat=-25.796208696902948&ne_lng=-48.34331285859085&sw_lat=-26.13278137872834&sw_lng=-48.71341478730179&zoom=11&zoom_level=11&search_by_map=true")
+page = requests.get("https://www.airbnb.com.br/s/Foz-do-Igua%C3%A7u-~-PR/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights=5&channel=EXPLORE&query=Foz%20do%20Igua%C3%A7u%20-%20PR&place_id=ChIJQwpTruuQ9pQRUqnEtHOUlyE&date_picker_type=calendar&source=structured_search_input_header&search_type=autocomplete_click")
 
 #criando lista de estabelecimentos
 estabelecimentos = []
 
 #loop para iterar todas as 15 páginas disponíveis
-for x in range(1):
+for x in range(15):
     
     #Transformando a string html para HTML de fato
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -96,5 +96,5 @@ tabela['Quantidade de avaliações'] = tabela['Quantidade de avaliações'].str.
 tabela = tabela[['Tipo', "Lugar", 'Avaliação', "Quantidade de avaliações", "Preço", "Hospedes","Quartos","Camas","Banheiros","Link"]]
 
 # exportando para xlsx
-tabela.to_excel('airbnb-guaratuba.xlsx')
+tabela.to_excel('airbnb-foz.xlsx')
 
