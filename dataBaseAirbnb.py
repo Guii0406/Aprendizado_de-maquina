@@ -9,7 +9,7 @@ import time
 airbnbDomain = "https://www.airbnb.com.br"
 
 #request para primeira página
-page = requests.get("https://www.airbnb.com.br/s/Foz-do-Igua%C3%A7u-~-PR/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights=5&channel=EXPLORE&query=Foz%20do%20Igua%C3%A7u%20-%20PR&place_id=ChIJQwpTruuQ9pQRUqnEtHOUlyE&date_picker_type=calendar&source=structured_search_input_header&search_type=autocomplete_click")
+page = requests.get("https://www.airbnb.com.br/s/Matinhos-~-PR/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights=5&channel=EXPLORE&query=Matinhos%20-%20PR&place_id=ChIJ8SCG7y3u25QRVTkDb8dp8OE&date_picker_type=calendar&source=structured_search_input_header&search_type=autocomplete_click")
 
 #criando lista de estabelecimentos
 estabelecimentos = []
@@ -96,5 +96,5 @@ tabela['Quantidade de avaliações'] = tabela['Quantidade de avaliações'].str.
 tabela = tabela[['Tipo', "Lugar", 'Avaliação', "Quantidade de avaliações", "Preço", "Hospedes","Quartos","Camas","Banheiros","Link"]]
 
 # exportando para xlsx
-tabela.to_excel('airbnb-foz.xlsx')
+tabela.to_excel('airbnb-matinhos-1.xlsx')
 
