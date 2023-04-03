@@ -1,0 +1,1 @@
+nesse diretório estão armazenadas todas as bases de dados geradas pelo script de Web Scrapping

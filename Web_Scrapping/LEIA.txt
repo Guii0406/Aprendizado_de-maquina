@@ -1,0 +1,7 @@
+o arquivo dataBaseAirbnb.py contém todo o código que foi construido para obter a base de dados via Web Scrapping do Airbnb
+
+o arquivo codigo_fonte.html contém um exemplo de código fonte que é retornado ao fazer um request para a página de um estabelecimento em específico
+
+O arquivo data.json contém um exemplo de json contido dentro do código fonte de um estabelecimento
+
+o arquivo test.py contém o código teste para .extrair os dados de dentro da página mencionada acima
