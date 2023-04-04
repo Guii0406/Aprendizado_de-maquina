@@ -1,1 +1,1 @@
-Aqui contém scripts para automatizar o processo de tratamento das bases de dados.
+Aqui contém scripts para automatizar o processo de tratamento das bases de dados
