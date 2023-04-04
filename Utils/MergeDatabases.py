@@ -1,4 +1,7 @@
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+
 
 databaseCascavel = pd.read_excel("/home/guii0406/Documentos/Aprendizado_de-maquina/Databases/Cascavel/airbnb-Cascavel-filtrado.xlsx")
 
@@ -68,9 +71,21 @@ fullDatabase['Camas'] = fullDatabase['Camas'].str.replace(" cama", "")
 fullDatabase["Camas"] = fullDatabase['Camas'].astype(int)
 
 
+newPrices = []
+for e in fullDatabase['Link'].values:
+    try:
+        url = requests.get(f"https://www.airbnb.com.br/{e}")
+        soup = BeautifulSoup(url.content, 'html.parser')
+        info = str(soup.find('meta', attrs={'name': 'description'}))
+        price = info.split('$')[1].split('.')[0]
+        newPrices.append(price)
+        print(price)
+    except Exception as e:
+        newPrices.append("excluido")
+        print("exluido")
 
 
-print(fullDatabase['Hospedes'])
+fullDatabase['Preço certo'] = newPrices
 
 
 fullDatabase.to_excel("DATABASE.xlsx")
