@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Work Sans', sans-serif;
+            overflow-y: hidden;
+        }
+        .container{
+            background-color: white;
+            height: 70vh;
+            /* width: 100px; */
+            --webkit-box-shadow: 10px 16px 86px -21px rgba(0,0,0,0.26);
+            -moz-box-shadow: 10px 16px 86px -21px rgba(0,0,0,0.26);
+            box-shadow: 10px 16px 86px -21px rgba(0,0,0,0.26);
+            padding: 3%;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+        .select{
+            padding: 10px;
+            outline: none;
+            border: none;
+            border-radius: 4px;
+            background-color: rgb(240, 240, 240);
+            width: 60%;
+            transition: all ease .2s ;
+            cursor: pointer;
+        }
+
+        .select:focus{
+            outline: none;
+            width: 100%;
+        }
+        .label > .select:focus{
+            color: blue;
+        }
+        option{
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+        .field{
+            margin-bottom: 30px;
+        }
+        .label{
+            margin-bottom: 10px;
+            color: rgb(60, 60, 60);
+            font-size: 12.5pt;
+            cursor: default;
+        }
+        button{
+            padding: 2.5% 8%;
+            border: none;
+            background-color: rgb(26, 26, 26);
+            color: white;
+            border-radius: 5%;
+            cursor: pointer;
+            font-size: 12.5pt;
+            transition: all ease .1s;
+
+        }
+        button:active{
+            transform: scale(1.1);
+        }
+
+        .modal{
+            background-color: rgba(0, 0, 0, 0.075);
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            display: flex;
+            /* opacity: 0; */
+            justify-content: center;
+            align-items: center;
+            top: 100vh
+        }
+
+        .modalcontent{
+            background-color: white;
+            width: 40%;
+            height: 30vh;
+            border-radius: 4px;
+            transform: scalex(0);
+            transition: all ease .2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40pt;
+            flex-direction: column;
+            padding: 1%;
+        }
+            .close{
+            font-size: 20pt;
+            height: 10vh;
+            width: 100%;
+            text-align: right;
+            cursor: pointer;
+            
+        }
+        .price{
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        } 
+    </style>
+</head>
+<body>
+
+
+    <div  id="modal" class="modal">
+        <div  id="modalcontent" class="modalcontent">
+            <div class="close">x</div>
+            <div class="price"><span></span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="field">
+            <div class="label">Insira o tipo do estabelecimento: </div>
+            <form action="/" method="post">
+                    <select required class="select" name="tipo_" id="">
+                        <option value="Loft">Loft</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Casa de hóspedes">Casa de hóspedes</option>
+                        <option value="Condomínio">Condomínio</option>
+                        <option value="Quarto privativo">Quarto privativo</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Vila">Vila</option>
+                        <option value="Cabana">Cabana</option>
+                        <option value="Hotel-fazenda">Hotel-fazenda</option>
+                        <option value="Rancho">Rancho</option>
+                        <option value="Casa de campo">Casa de campo</option>
+                        <option value="Casa de cúpula">Casa de cúpula</option>
+                        <option value="Lugar para ficar">Lugar para ficar</option>
+                        <option value="Suíte de hóspedes">Suíte de hóspedes</option>
+                        <option value="Chalé">Chalé</option>
+                        <option value="Quarto de hotel">Quarto de hotel</option>
+                        <option value="Quarto compartilhado">Quarto compartilhado</option>
+                        <option value="Microcasa">Microcasa</option>
+                        <option value="Townhouse">Townhouse</option>
+                        <option value="Casa na terra">Casa na terra</option>
+                        <option value="Casa de veraneio">Casa de veraneio</option>
+                        <option value="Bangalô">Bangalô</option>
+                        <option value="Casa na árvore">Casa na árvore</option>
+                        <option value="Barco">Barco</option>
+                        <option value="Cabana de pastor">Cabana de pastor</option>
+
+                    </select>
+                </div>
+
+                <div class="field">
+                    <div class="label">Insira a localização do estabelecimento: </div>
+                        <select required class="select" name="lugar_" id="">
+                            <option value="Neva">Neva</option>
+                            <option value="Cascavel">Cascavel</option>
+                            <option value="Recanto Tropical">Recanto Tropical</option>
+                            <option value="Bairro Coqueiral">Bairro Coqueiral</option>
+                            <option value="Country">Country</option>
+                            <option value="Cascavel ">Cascavel </option>
+                            <option value="Ciro Nardi">Ciro Nardi</option>
+                            <option value="Santa Cruz">Santa Cruz</option>
+                            <option value="Bairro São Cristóvão">Bairro São Cristóvão</option>
+                            <option value="Maria Luíza">Maria Luíza</option>
+                            <option value="Pacaembu">Pacaembu</option>
+                            <option value="Universitário">Universitário</option>
+                            <option value="Canadá">Canadá</option>
+                            <option value="Claudete">Claudete</option>
+                            <option value="Vila Tolentino">Vila Tolentino</option>
+                            <option value="Esmeralda">Esmeralda</option>
+                            <option value="Cajuru">Cajuru</option>
+                            <option value="Curitiba">Curitiba</option>
+                            <option value="Água Verde">Água Verde</option>
+                            <option value="Curitiba ">Curitiba </option>
+                            <option value="Tingui">Tingui</option>
+                            <option value="CURITIBA">CURITIBA</option>
+                            <option value="Curitiba Cívico">Curitiba Cívico</option>
+                            <option value="Rebouças">Rebouças</option>
+                            <option value="Pinhais">Pinhais</option>
+                            <option value="Mercês">Mercês</option>
+                            <option value="Rio de Una">Rio de Una</option>
+                            <option value="Campo Magro">Campo Magro</option>
+                            <option value="Batel">Batel</option>
+                            <option value="Campina Grande do Sul">Campina Grande do Sul</option>
+                            <option value="Mossunguê">Mossunguê</option>
+                            <option value="Cristo Rei">Cristo Rei</option>
+                            <option value="Capão Raso">Capão Raso</option>
+                            <option value="Alto da XV">Alto da XV</option>
+                            <option value="Juvevê">Juvevê</option>
+                            <option value="Alto da Glória">Alto da Glória</option>
+                            <option value="São José dos Pinhais">São José dos Pinhais</option>
+                            <option value="Campo de Santana">Campo de Santana</option>
+                            <option value="Cidade Industrial De Curitiba">Cidade Industrial De Curitiba</option>
+                            <option value="Xaxim">Xaxim</option>
+                            <option value="Boa Vista">Boa Vista</option>
+                            <option value="Tarumã">Tarumã</option>
+                            <option value="Campina do Siqueira">Campina do Siqueira</option>
+                            <option value="Campo Comprido">Campo Comprido</option>
+                            <option value="Bairro Alto">Bairro Alto</option>
+                            <option value="Bigorrilho">Bigorrilho</option>
+                            <option value="Jardim Botânico">Jardim Botânico</option>
+                            <option value="Prado Velho">Prado Velho</option>
+                            <option value="Vila Izabel">Vila Izabel</option>
+                            <option value="Afonso Pena">Afonso Pena</option>
+                            <option value="Jardim Social">Jardim Social</option>
+                            <option value="Santa Felicidade">Santa Felicidade</option>
+                            <option value="Santa Cândida">Santa Cândida</option>
+                            <option value="Águas Belas">Águas Belas</option>
+                            <option value="Vista Alegre">Vista Alegre</option>
+                            <option value="Capão da Imbuia">Capão da Imbuia</option>
+                            <option value="Vale do Arvoredo">Vale do Arvoredo</option>
+                            <option value="Jardim Presidente">Jardim Presidente</option>
+                            <option value="Gleba Fazenda Palhano">Gleba Fazenda Palhano</option>
+                            <option value="Londrina">Londrina</option>
+                            <option value="Londrina Londrina">Londrina Londrina</option>
+                            <option value="Higienópolis">Higienópolis</option>
+                            <option value="Vila Fujita">Vila Fujita</option>
+                            <option value="Loteamento Chamonix">Loteamento Chamonix</option>
+                            <option value="Maringá">Maringá</option>
+                            <option value="Parque Residencial Joao Piza">Parque Residencial Joao Piza</option>
+                            <option value="Parque Residencial Alcantara">Parque Residencial Alcantara</option>
+                            <option value="Antares">Antares</option>
+                            <option value="Jardim Higienopolis">Jardim Higienopolis</option>
+                            <option value="Vila Ipiranga">Vila Ipiranga</option>
+                            <option value="Jardim Guararapes">Jardim Guararapes</option>
+                            <option value="Newton Guimarães">Newton Guimarães</option>
+                            <option value="Ouro Verde">Ouro Verde</option>
+                            <option value="Bancários">Bancários</option>
+                            <option value="Colina Verde">Colina Verde</option>
+                            <option value="Cidade Industrial II">Cidade Industrial II</option>
+                            <option value="Portal de Versalhes I">Portal de Versalhes I</option>
+                            <option value="Gayon">Gayon</option>
+                            <option value="Recanto Nobre">Recanto Nobre</option>
+                            <option value="Jardim dos Alpes">Jardim dos Alpes</option>
+                            <option value="Jardim Boa Vista">Jardim Boa Vista</option>
+                            <option value="Jardim Nacoes Unidas">Jardim Nacoes Unidas</option>
+                            <option value="Jardim Palermo">Jardim Palermo</option>
+                            <option value="Jardim do Lago">Jardim do Lago</option>
+                            <option value="Shangri-lá">Shangri-lá</option>
+                            <option value="Jardim Maria Luiza">Jardim Maria Luiza</option>
+                            <option value="Jardim Tokio">Jardim Tokio</option>
+                            <option value="H.U.">H.U.</option>
+                            <option value="Ibiporã">Ibiporã</option>
+                            <option value="Conjunto Cafe">Conjunto Cafe</option>
+                            <option value="Vila Larsen 1">Vila Larsen 1</option>
+                            <option value="Foz do iguaçu">Foz do iguaçu</option>
+                            <option value="Foz do Iguaçu">Foz do Iguaçu</option>
+                            <option value="Profilurb II">Profilurb II</option>
+                            <option value="Jardim América">Jardim América</option>
+                            <option value="Foz do Iguaçu ">Foz do Iguaçu </option>
+                            <option value="Beverly Falls Park">Beverly Falls Park</option>
+                            <option value="Jardim Panorama II">Jardim Panorama II</option>
+                            <option value="Parque Ouro Verde">Parque Ouro Verde</option>
+                            <option value="Vila Perola">Vila Perola</option>
+                            <option value="Vila Yolanda">Vila Yolanda</option>
+                            <option value="Jardim Eliza I">Jardim Eliza I</option>
+                            <option value="Vila Residencial A">Vila Residencial A</option>
+                            <option value="Jardim Guarapuava">Jardim Guarapuava</option>
+                            <option value="Jardim Polo Foz do iguaçu">Jardim Polo Foz do iguaçu</option>
+                            <option value="Parque Residencial Italia">Parque Residencial Italia</option>
+                            <option value="Jardim Manaus">Jardim Manaus</option>
+                            <option value="Loteamento Campos do Iguacu">Loteamento Campos do Iguacu</option>
+                            <option value="Jardim Residencial Cataratas">Jardim Residencial Cataratas</option>
+                            <option value="Foz do Iguaçu - PR">Foz do Iguaçu - PR</option>
+                            <option value="Profilurb I">Profilurb I</option>
+                            <option value="Loteamento Dona Amanda">Loteamento Dona Amanda</option>
+                            <option value="Loteamento Parque do Patriarco, Foz do Iguaçu">Loteamento Parque do Patriarco, Foz do Iguaçu</option>
+                            <option value="Jardim Novo Horizonte">Jardim Novo Horizonte</option>
+                            <option value="Conjunto B">Conjunto B</option>
+                            <option value="Parque Residencial Três Bandeiras">Parque Residencial Três Bandeiras</option>
+                            <option value="Matinhos">Matinhos</option>
+                            <option value="Pontal do Paraná">Pontal do Paraná</option>
+                            <option value="Betaras">Betaras</option>
+                            <option value="Praia de Leste">Praia de Leste</option>
+                            <option value="Guaratuba">Guaratuba</option>
+                            <option value="Gaivotas">Gaivotas</option>
+                            <option value="Vila Paraiso">Vila Paraiso</option>
+                            <option value="Matinhos ">Matinhos </option>
+                            <option value="Praia Grande">Praia Grande</option>
+                            <option value="Matinhos Balneário Flórida.">Matinhos Balneário Flórida.</option>
+                            <option value="Florida">Florida</option>
+                            <option value="MATINHOS">MATINHOS</option>
+                            <option value="Beijatuba">Beijatuba</option>
+                            <option value="Brejatuba">Brejatuba</option>
+                            <option value=" Guaratuba"> Guaratuba</option>
+                            <option value="Guaratuba ">Guaratuba </option>
+                            <option value="Balneario Coroados">Balneario Coroados</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Itapoá">Itapoá</option>
+                            <option value="São Francisco do Sul">São Francisco do Sul</option>
+                            <option value="Balneario Nereiras">Balneario Nereiras</option>
+                            <option value="Balneário Caravelas">Balneário Caravelas</option>
+                            <option value="Contenda">Contenda</option>
+                            <option value="Doutor Pedrinho">Doutor Pedrinho</option>
+                            <option value="Inácio Martins">Inácio Martins</option>
+                            <option value=" São José dos Pinhais"> São José dos Pinhais</option>
+                            <option value="Palmeira">Palmeira</option>
+                            <option value="Quatro Barras">Quatro Barras</option>
+                            <option value="Itaqui de Cima">Itaqui de Cima</option>
+                            <option value="São Bento do Sul">São Bento do Sul</option>
+                            <option value="Quitandinha">Quitandinha</option>
+                            <option value="São João da Graciosa">São João da Graciosa</option>
+                            <option value="Campo Alegre">Campo Alegre</option>
+                            <option value="Jaraguá do Sul">Jaraguá do Sul</option>
+                            <option value="Campina Grande do Sul ">Campina Grande do Sul </option>
+                            <option value="Balsa Nova">Balsa Nova</option>
+                            <option value="Joinville">Joinville</option>
+                            <option value="Campina dos Pupos">Campina dos Pupos</option>
+                            <option value="Paraná">Paraná</option>
+                            <option value="Morretes">Morretes</option>
+                            <option value="Rio dos Cedros">Rio dos Cedros</option>
+                            <option value="Gralha Azul">Gralha Azul</option>
+                            <option value="Pitanga">Pitanga</option>
+                            <option value="Barra Velha">Barra Velha</option>
+                            <option value="Apucarana">Apucarana</option>
+                            <option value="Miringuava">Miringuava</option>
+                            <option value="Industrial Sudoeste">Industrial Sudoeste</option>
+                            <option value="Antonina">Antonina</option>
+                            <option value="Três Barras">Três Barras</option>
+                            <option value="Paiçandu">Paiçandu</option>
+                            <option value="José Andreatta">José Andreatta</option>
+                            <option value="Jardim Primavera">Jardim Primavera</option>
+                            <option value="Recreio da Serra">Recreio da Serra</option>
+                            <option value="Piraquara">Piraquara</option>
+                            <option value="Bomplandt">Bomplandt</option>
+                            <option value="Lucena">Lucena</option>
+                            <option value="Piên">Piên</option>
+                            <option value="São Sebastiao">São Sebastiao</option>
+                            <option value="Campo Largo">Campo Largo</option>
+                            <option value="Canoinhas">Canoinhas</option>
+                            <option value="Massaranduba">Massaranduba</option>
+                            <option value="Prudentópolis">Prudentópolis</option>
+                            <option value="Caravela">Caravela</option>
+                            <option value="Rio Negrinho">Rio Negrinho</option>
+                            <option value="Santo Antônio">Santo Antônio</option>
+                            <option value="Salto Grande">Salto Grande</option>
+                            <option value="Corupá">Corupá</option>
+                            <option value="Ribeirão Claro">Ribeirão Claro</option>
+                            <option value="Parque Breckenfeld">Parque Breckenfeld</option>
+                            <option value="Ilha do Mel">Ilha do Mel</option>
+                            <option value="Sarutaiá">Sarutaiá</option>
+                            <option value="Praia de Encantadas">Praia de Encantadas</option>
+                            <option value="Vila dos Ferroviarios">Vila dos Ferroviarios</option>
+                            <option value="São Luiz do Purunã ">São Luiz do Purunã </option>
+                            <option value="Praia de leste">Praia de leste</option>
+                            <option value="Tijucas do Sul">Tijucas do Sul</option>
+                            <option value="Vila da Gloria">Vila da Gloria</option>
+                            <option value="Jaguariaíva">Jaguariaíva</option>
+                            <option value="Neves">Neves</option>
+                            <option value="Jardim da Colina">Jardim da Colina</option>
+                            <option value="Bofete">Bofete</option>
+                            <option value="Balneário Barra do Sul">Balneário Barra do Sul</option>
+                            <option value="Santana">Santana</option>
+                            <option value="Ponta Grossa">Ponta Grossa</option>
+                            <option value="Irati">Irati</option>
+                            <option value="Tibagi">Tibagi</option>
+                            <option value="Uvaranas">Uvaranas</option>
+                            <option value="São Luiz do Purunã">São Luiz do Purunã</option>
+                            <option value="Vila Fuck">Vila Fuck</option>
+                            <option value="Mato Limpo">Mato Limpo</option>
+                            <option value="Vila Irai">Vila Irai</option>
+                            <option value="São João do Itaperiú">São João do Itaperiú</option>
+                            <option value="Represa do Vossoroca">Represa do Vossoroca</option>
+                            <option value="Boehmerwald">Boehmerwald</option>
+                            <option value="Do Ubatuba">Do Ubatuba</option>
+                            <option value="Mafra">Mafra</option>
+                            <option value="Borda do campo, São José dos Pinhais ">Borda do campo, São José dos Pinhais </option>
+                            <option value="Bocaiúva do Sul">Bocaiúva do Sul</option>
+                            <option value="Paranaguá">Paranaguá</option>
+                            <option value="Cicamp">Cicamp</option>
+                            <option value="Guarapuava">Guarapuava</option>
+                            <option value="Centro III Monte Alegre">Centro III Monte Alegre</option>
+                            <option value="Zona Rural">Zona Rural</option>
+                            <option value="Colonia Dona Luiza">Colonia Dona Luiza</option>
+                            <option value="State of Santa Catarina">State of Santa Catarina</option>
+                            <option value="Rio Branco do Sul">Rio Branco do Sul</option>
+                            <option value="Iguaraçu">Iguaraçu</option>
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <div class="label">Insira a avaliação do estabelecimento(0 a 5): </div>
+                        <input required max="5" min="0" name="avaliacao" class="select" type="number">
+                    </div>
+
+                        <div class="field">
+                            <div class="label">Insira a quantidade de avaliações: </div>
+                            <input required min="0" name="quantiAvalicao" class="select" type="number">
+                        </div>
+
+                        <div class="field">
+                            <div class="label">Insira a quantidade de hóspedes: </div>
+                            <input required min="0" name="hospedes" class="select" type="number">
+                        </div>
+
+                        <div class="field">
+                            <div class="label">Insira a quantidade de quartos: </div>
+                            <input required min="0" name="quartos" class="select" type="number">
+                        </div>
+
+                        <div class="field">
+                            <div class="label">Insira a quantidade de camas: </div>
+                            <input required min="0" name="camas" class="select" type="number">
+                        </div>
+
+                        <div class="field">
+                            <div class="label">Insira a quantidade de banheiros: </div>
+                            <input required min="0" name="banheiros" class="select" type="number">
+                        </div>
+
+                        <Button type="submit" onclick="">Predict</Button>
+            </form>
+        </div>
+
+        <script>
+            function openModal(){
+                var modalcontent = document.getElementById('modalcontent')
+                
+                modal.style.top = "0"
+                modalcontent.style.transform = "scalex(1)"
+                
+                
+            }
+            async function closeModal(){
+                console.log("dsakdj")
+                var modal = document.getElementById('modal')
+                modalcontent.style.transform = "scalex(0)"
+                await new Promise(r => setTimeout(() => r(), 200));
+                modal.style.top = "100vh"
+            }
+        </script>
+</body>
+</html>

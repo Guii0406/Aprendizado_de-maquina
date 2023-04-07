@@ -22,7 +22,7 @@ xg_reg.fit(X_train, y_train)
 preds = xg_reg.predict(X_test)
 
 # Define as características do novo lugar
-novo_lugar = pd.DataFrame({'Tipo': ['Apartamento'], 'Lugar': ['Curitiba'], 'Avaliação': [4.93], 'Quantidade de avaliações': [71], 'Hospedes': [4], 'Quartos': [2], 'Camas': [2], 'Banheiros': [1]})
+novo_lugar = pd.DataFrame({'Tipo': ['Apartamento'], 'Lugar': ['Curitiba'], 'Avaliação': [4.69], 'Quantidade de avaliações': [116], 'Hospedes': [3], 'Quartos': [1], 'Camas': [3], 'Banheiros': [1]})
 
 # Aplica get_dummies e reindexa as colunas do novo lugar
 novo_lugar = pd.get_dummies(novo_lugar)
