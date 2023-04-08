@@ -4,9 +4,11 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-
+import webview
 
 app = Flask(__name__)
+window = webview.create_window('teste', app, width=1920, height=1080)
+
 
 @app.route("/",  methods=['GET', 'POST'])
 def home():
@@ -90,4 +92,5 @@ def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, cam
     return '{:.2f}'.format(previsoes[0])
 
 if __name__ in '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    webview.start()
