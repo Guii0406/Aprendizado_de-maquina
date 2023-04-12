@@ -10,6 +10,7 @@ app = Flask(__name__)
 window = webview.create_window('teste', app, width=1920, height=1080)
 
 
+
 @app.route("/",  methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
