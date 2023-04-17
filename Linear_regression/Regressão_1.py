@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
 # Ler o arquivo 'DATABASE.xlsx' em um DataFrame
-df = pd.read_excel('DATABASE.xlsx')
+df = pd.read_excel('DATABASE-UPDATE-LUGARES.xlsx')
 
 # Selecionar as colunas necessarias  e criar variáveis dummy para as colunas categóricas
 X = pd.get_dummies(df[['Tipo', 'Lugar', 'Avaliação', 'Quantidade de avaliações', 'Hospedes', 'Quartos', 'Camas', 'Banheiros']])

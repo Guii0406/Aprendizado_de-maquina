@@ -3,7 +3,7 @@ import xgboost as xgb
 from sklearn.model_selection import train_test_split
 
 # Carrega os dados do arquivo Excel
-df = pd.read_excel('DATABASE.xlsx')
+df = pd.read_excel('DATABASE-UPDATE-LUGARES.xlsx')
 
 # Seleciona as colunas necessarias
 X = pd.get_dummies(df[['Tipo', 'Lugar', 'Avaliação', 'Quantidade de avaliações', 'Hospedes', 'Quartos', 'Camas', 'Banheiros', 'Link']])

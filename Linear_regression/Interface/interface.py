@@ -1,13 +1,13 @@
 # pip install Flask
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-import webview
+# import webview
 
 app = Flask(__name__)
-window = webview.create_window('teste', app, width=1920, height=1080)
+# window = webview.create_window('teste', app, width=1920, height=1080)
 
 
 
@@ -33,7 +33,7 @@ def home():
 
 def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, camas_, banheiros_):
     # Ler o arquivo 'DATABASE.xlsx' em um DataFrame
-    df = pd.read_excel('Linear_regression/DATABASE.xlsx')
+    df = pd.read_excel(r"C:\Users\dagos\OneDrive\Desktop\Aprendizado_de-maquina\Linear_regression\DATABASE-UPDATE-LUGARES.xlsx")
 
     # Selecionar as colunas necessarias  e criar variáveis dummy para as colunas categóricas
     X = pd.get_dummies(df[['Tipo', 'Lugar', 'Avaliação', 'Quantidade de avaliações', 'Hospedes', 'Quartos', 'Camas', 'Banheiros']])
@@ -93,5 +93,5 @@ def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, cam
     return '{:.2f}'.format(previsoes[0])
 
 if __name__ in '__main__':
-    # app.run(debug=True)
-    webview.start()
+    app.run(debug=True)
+    # webview.start()
