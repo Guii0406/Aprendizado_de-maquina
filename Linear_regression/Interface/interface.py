@@ -49,7 +49,7 @@ def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, cam
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
     # Define o modelo XGBoost com os hiperparâmetros especificados
-    xg_reg = xgb.XGBRegressor(objective='reg:squarederror',n_estimators=500, max_depth=6, min_child_weight=0.8, colsample_bylevel= 0.5, learning_rate=0.1)
+    xg_reg = xgb.XGBRegressor(objective='reg:squarederror',n_estimators=500, max_depth=6, min_child_weight=0.8, colsample_bylevel= 0.5, learning_rate=0.1, seed=42)
 
     # Treina o modelo com os dados de treinamento
     xg_reg.fit(X_train, y_train)
@@ -59,7 +59,8 @@ def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, cam
     # for itemt, itemp in zip( y_test.to_list(), preds.tolist()):
     #     print(str(itemt), str(itemp))
     # Define as características do novo lugar
-    novo_lugar = pd.DataFrame({'Tipo': [f'{tipo_}'], 'Lugar': [f'{lugar_}'], 'Avaliação': [avaliacao_], 'Quantidade de avaliações': [quantiAvalicao_], 'Hospedes': [hospedes_], 'Quartos': [quartos_], 'Camas': [camas_], 'Banheiros': [banheiros_]})
+    novo_lugar = pd.DataFrame({'Tipo': [f'{tipo_}'], 'Lugar': [f'{lugar_}'], 'Avaliação': [float(avaliacao_)], 'Quantidade de avaliações': [int(quantiAvalicao_)], 'Hospedes': [int(hospedes_)], 'Quartos': [int(quartos_)], 'Camas': [int(camas_)], 'Banheiros': [int(banheiros_)]})
+    # novo_lugar = pd.DataFrame({'Tipo': ['Loft'], 'Lugar': ['Neva'], 'Avaliação': [4.87], 'Quantidade de avaliações': [182], 'Hospedes': [2], 'Quartos': [1], 'Camas': [1], 'Banheiros': [1]})
 
     # Aplica get_dummies e reindexa as colunas do novo lugar
     novo_lugar = pd.get_dummies(novo_lugar)
@@ -70,7 +71,9 @@ def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, cam
 
     # Imprime o preço previsto do novo lugar com duas casas decimais
     # print('\n O preço previsto para o imóvel é: R$ {:.2f}'.format(previsoes[0]), '\n')
-    print(tipo_ + ' ' + lugar_+ ' ' + avaliacao_+ ' ' + quantiAvalicao_+ ' '+ hospedes_+ ' ' + quartos_+ ' '+camas_+ ' '+banheiros_)
+
+
+    # print('{:.2f}'.format(previsoes[0]))
     return '{:.2f}'.format(previsoes[0])
 
 
