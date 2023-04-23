@@ -32,65 +32,47 @@ def home():
 
 
 def predict(tipo_, lugar_, avaliacao_, quantiAvalicao_, hospedes_, quartos_, camas_, banheiros_):
-    # Ler o arquivo 'DATABASE.xlsx' em um DataFrame
-    df = pd.read_excel(r"C:\Users\dagos\OneDrive\Desktop\Aprendizado_de-maquina\Linear_regression\DATABASE-UPDATE-LUGARES.xlsx")
+    # https://towardsdatascience.com/xgboost-fine-tune-and-optimize-your-model-23d996fab663
 
-    # Selecionar as colunas necessarias  e criar variáveis dummy para as colunas categóricas
-    X = pd.get_dummies(df[['Tipo', 'Lugar', 'Avaliação', 'Quantidade de avaliações', 'Hospedes', 'Quartos', 'Camas', 'Banheiros']])
+    import pandas as pd
+    import xgboost as xgb
+    from sklearn.model_selection import train_test_split
 
-    # Selecionar a coluna 'Preço' como variável dependente
+    # Carrega os dados do arquivo Excel
+    df = pd.read_excel('DATABASE-UPDATE-LUGARES2.xlsx')
+
+    # Seleciona as colunas necessarias
+    X = pd.get_dummies(df[['Tipo', 'Lugar', 'Avaliação', 'Quantidade de avaliações', 'Hospedes', 'Quartos', 'Camas', 'Banheiros', 'Link']])
     y = df['Preço']
 
-    # Dividir os dados em conjuntos de treinamento e teste com uma proporção de 80% para treinamento e 20% para teste, e definir o estado aleatório como 42 para reproduzibilidade
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # Divide os dados em conjuntos de treinamento e teste
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-    # Criar um objeto LinearRegression
-    modelo = LinearRegression()
+    # Define o modelo XGBoost com os hiperparâmetros especificados
+    xg_reg = xgb.XGBRegressor(objective='reg:squarederror',n_estimators=500, max_depth=6, min_child_weight=0.8, colsample_bylevel= 0.5, learning_rate=0.1)
 
-    # Treinar o modelo com os dados de treinamento
-    modelo.fit(X_train, y_train)
+    # Treina o modelo com os dados de treinamento
+    xg_reg.fit(X_train, y_train)
 
-    # Fazer previsões com o modelo treinado usando os dados de teste
-    y_pred = modelo.predict(X_test)
+    # Faz as previsões com o modelo treinado usando os dados de teste
+    preds = xg_reg.predict(X_test)
+    # for itemt, itemp in zip( y_test.to_list(), preds.tolist()):
+    #     print(str(itemt), str(itemp))
+    # Define as características do novo lugar
+    novo_lugar = pd.DataFrame({'Tipo': [f'{tipo_}'], 'Lugar': [f'{lugar_}'], 'Avaliação': [avaliacao_], 'Quantidade de avaliações': [quantiAvalicao_], 'Hospedes': [hospedes_], 'Quartos': [quartos_], 'Camas': [camas_], 'Banheiros': [banheiros_]})
 
-    # Avaliar o desempenho do modelo usando o coeficiente de determinação R²
-    r2_score(y_test, y_pred)
-
-    # Solicitar que o usuário insira as informações do novo imóvel
-    print("Insira as informações do novo imóvel:")
-    tipo = tipo_
-    lugar = lugar_
-    avaliacao = float(avaliacao_)
-    quantidade_avaliacoes = int(quantiAvalicao_)
-    hospedes = int(hospedes_)
-    quartos = int(quartos_)
-    camas = int(camas_)
-    banheiros = int(banheiros_)
-
-    # Criar um DataFrame com as informações do novo imóvel
-    novo_lugar = pd.DataFrame({
-        "Tipo": [tipo],
-        "Lugar": [lugar],
-        "Avaliação": [avaliacao],
-        "Quantidade de avaliações": [quantidade_avaliacoes],
-        "Hospedes": [hospedes],
-        "Quartos": [quartos],
-        "Camas": [camas],
-        "Banheiros": [banheiros]
-    })
-
-
-    # Criar variáveis dummy para as colunas categóricas do novo imóvel
+    # Aplica get_dummies e reindexa as colunas do novo lugar
     novo_lugar = pd.get_dummies(novo_lugar)
+    novo_lugar = novo_lugar.reindex(columns=X_train.columns, fill_value=0)
 
-    # Reordenar as colunas do DataFrame do novo imóvel para que fiquem na mesma ordem das colunas do DataFrame de treinamento, preenchendo com 0 para as colunas ausentes
-    novo_lugar = novo_lugar.reindex(columns=modelo.feature_names_in_, fill_value=0)
+    # Faz a previsão do preço do novo lugar com o modelo treinado
+    previsoes = xg_reg.predict(novo_lugar)
 
-    # Fazer previsões de preço para o novo imóvel usando o modelo treinado
-    previsoes = modelo.predict(novo_lugar)
-
-    # Imprimir o preço previsto para o novo imóvel formatado em reais com duas casas decimais
+    # Imprime o preço previsto do novo lugar com duas casas decimais
+    # print('\n O preço previsto para o imóvel é: R$ {:.2f}'.format(previsoes[0]), '\n')
+    print(tipo_ + ' ' + lugar_+ ' ' + avaliacao_+ ' ' + quantiAvalicao_+ ' '+ hospedes_+ ' ' + quartos_+ ' '+camas_+ ' '+banheiros_)
     return '{:.2f}'.format(previsoes[0])
+
 
 if __name__ in '__main__':
     app.run(debug=True)

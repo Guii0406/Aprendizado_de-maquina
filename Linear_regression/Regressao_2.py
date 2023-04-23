@@ -15,8 +15,7 @@ y = df['Preço']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Define o modelo XGBoost com os hiperparâmetros especificados
-xg_reg = xgb.XGBRegressor(objective='reg:squarederror')
-# , colsample_bytree=0.7, learning_rate=0.3, max_depth=8, alpha=10, n_estimators=400
+xg_reg = xgb.XGBRegressor(objective='reg:squarederror',n_estimators=500, max_depth=6, min_child_weight=0.8, colsample_bylevel= 0.5, learning_rate=0.1)
 
 # Treina o modelo com os dados de treinamento
 xg_reg.fit(X_train, y_train)
@@ -26,7 +25,7 @@ preds = xg_reg.predict(X_test)
 for itemt, itemp in zip( y_test.to_list(), preds.tolist()):
     print(str(itemt), str(itemp))
 # Define as características do novo lugar
-novo_lugar = pd.DataFrame({'Tipo': ['Casa de campo'], 'Lugar': ['Campina Grande do Sul'], 'Avaliação': [4.91], 'Quantidade de avaliações': [32], 'Hospedes': [16], 'Quartos': [4], 'Camas': [12], 'Banheiros': [3]})
+novo_lugar = pd.DataFrame({'Tipo': ['Loft'], 'Lugar': ['Neva'], 'Avaliação': [4.87], 'Quantidade de avaliações': [182], 'Hospedes': [2], 'Quartos': [1], 'Camas': [1], 'Banheiros': [1]})
 
 # Aplica get_dummies e reindexa as colunas do novo lugar
 novo_lugar = pd.get_dummies(novo_lugar)
@@ -37,10 +36,3 @@ previsoes = xg_reg.predict(novo_lugar)
 
 # Imprime o preço previsto do novo lugar com duas casas decimais
 print('\n O preço previsto para o imóvel é: R$ {:.2f}'.format(previsoes[0]), '\n')
-
-
-
-
-
-
-

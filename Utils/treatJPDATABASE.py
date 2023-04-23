@@ -2,7 +2,7 @@ import pandas as pd
 
 # C:\\Users\\dagos\\OneDrive\\Desktop\\Aprendizado_de-maquina\\DATABASE.xlsx"
 
-newdatabase = pd.read_excel("C:\\Users\\dagos\\Downloads\\DATABASE.xlsx")
+newdatabase = pd.read_excel(r"C:\Users\Gui\Documents\Aprendizado_de-maquina\DATABASE-UPDATE-LUGARES.xlsx")
 
 # Curitiba
 # Curitiba_
@@ -58,7 +58,9 @@ newdatabase['Lugar'] = newdatabase['Lugar'].str.replace("Loteamento Parque do Pa
 
 # Guaratuba
 # _Guaratuba
+# Guaratuba_
 newdatabase['Lugar'] = newdatabase['Lugar'].str.replace(" Guaratuba", "Guaratuba")
+newdatabase['Lugar'] = newdatabase['Lugar'].str.replace("Guaratuba ", "Guaratuba")
 
 
 # Matinhos
@@ -88,6 +90,9 @@ newdatabase['Lugar'] = newdatabase['Lugar'].str.replace(" Londrina", "Londrina")
 newdatabase['Lugar'] = newdatabase['Lugar'].str.replace("Londrina Londrina", "Londrina")
 newdatabase['Lugar'] = newdatabase['Lugar'].str.replace("LondrinaLondrina", "Londrina")
 
-newdatabase.to_excel("DATABASE-UPDATE-LUGARES.xlsx")
+# Campina Grande do Sul_
+newdatabase['Lugar'] = newdatabase['Lugar'].str.replace("Campina Grande do Sul ", "Campina Grande do Sul")
+
+newdatabase.to_excel("DATABASE-UPDATE-LUGARES2.xlsx")
 
 
